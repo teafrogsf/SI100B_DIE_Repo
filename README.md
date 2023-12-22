@@ -28,6 +28,8 @@ Please follow these steps to get familiar with Git.
 
 - (For One Team Member) Please add a function `hiii()`, write something, then commit and try to push your changes. What happens now?
 
+**NOTE: Please DO NOT use `git push -f` if you are unsure about the CONSEQUENCES!**
+
 # Lecture 2
 
 ## Folder `assets`
