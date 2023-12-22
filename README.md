@@ -10,11 +10,13 @@ Please follow these steps to get familiar with Git.
 
 (For Team Leader) Please invite your team members to your repository.
 
+All of you should `git clone` your remote repository to create a local repository.
+
 ## Step 2
 
-- (For Team Leader) Please create a file named `hello2.py`, add some random code, commit your changes with message "hello 2", and push your changes to the remote repository.
+- (For Team Leader) Please create a file named `hello2.py`, add some random code, `git add .`, `commit` your changes with message "hello 2", and `push` your changes to the remote repository.
 
-- (For Team Members) Please pull the remote changes from the remote repository to your local repository.
+- (For Team Members) Please `pull` the remote changes from the remote repository to your local repository.
 
 ## Step 3
 
@@ -22,11 +24,15 @@ Please follow these steps to get familiar with Git.
 
 - (For One Team Member) Please change `print("Hello!")` to `print("hello")` in `hello.py`, then commit and try to push your changes. What happens now?
 
+After merging conflicts, commit and push your changes.
+
 ## Step 4
 
 - (For Team Leader) Please add a function `hi()`, write something, then commit and push your changes.
 
 - (For One Team Member) Please add a function `hiii()`, write something, then commit and try to push your changes. What happens now?
+
+After merging conflicts, commit and push your changes.
 
 **NOTE: Please DO NOT use `git push -f` if you are unsure about the CONSEQUENCES!**
 
