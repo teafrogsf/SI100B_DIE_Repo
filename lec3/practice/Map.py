@@ -6,6 +6,10 @@ from random import random,randint
 class Block(pygame.sprite.Sprite):
     def __init__(self, image, x, y):
         super().__init__()
+        self.image = pygame.transform.scale(image, 
+            (SceneSettings.tileWidth, SceneSettings.tileHeight))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
 
 
 def gen_map():
@@ -22,5 +26,21 @@ def gen_map():
     return mapObj
 
 def build_obstacles():
-    pass    
+
+    image = pygame.image.load(GamePath.tree)
+    obstacles = pygame.sprite.Group()
+
+    midX = SceneSettings.tileXnum // 2
+    midY = SceneSettings.tileYnum // 2
+
+    for i in range(SceneSettings.tileXnum):
+        for j in range(SceneSettings.tileYnum):
+            if random() < SceneSettings.obstacleDensity and \
+                ((i not in range(midX - 3, midX + 4))\
+                or (j not in range(midY - 3, midY + 4)))\
+                and (i > midX or j > midY):
+                obstacles.add(Block(image, 
+                    SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
+                
+    return obstacles
 

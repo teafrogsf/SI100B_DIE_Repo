@@ -36,6 +36,12 @@ class Player(pygame.sprite.Sprite):
                 dx += self.speed
                 
             self.rect = self.rect.move(dx, dy)
+            if pygame.sprite.spritecollide(self, scene.obstacles, False):
+                self.rect = self.rect.move(-dx, -dy)
+        
+            if any(keys):
+                self.index = (self.index + 1) % len(self.images)
+                self.image = self.images[self.index]
 
 
     def render(self, window):

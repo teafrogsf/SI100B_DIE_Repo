@@ -28,12 +28,15 @@ class SceneManager:
         pass
 
     def update(self):
-        pass
+        for npc in self.npcs:
+            npc.update()
 
     def render(self):
         for i in range(SceneSettings.tileXnum):
             for j in range(SceneSettings.tileYnum):
                 self.window.blit(self.map[i][j], 
-                                 (SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
+                    (SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
+        self.obstacles.draw(self.window)
+        self.npcs.draw(self.window)
 
     

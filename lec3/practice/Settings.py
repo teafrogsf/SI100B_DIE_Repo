@@ -18,6 +18,7 @@ class NPCSettings:
     npcSpeed = 1
     npcWidth = 60
     npcHeight = 60
+    npcPatrollingRange = 70
     talkCD = 30           # 1s
 
 class SceneSettings:
