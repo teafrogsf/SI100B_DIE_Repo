@@ -19,15 +19,21 @@ class NPC(pygame.sprite.Sprite):
         self.direction = 1
         self.patrollingRange = NPCSettings.npcPatrollingRange
 
+        self.talking = False
+        self.talkCD = 0
+
     def update(self):
-        self.rect = self.rect.move(self.speed * self.direction, 0)
-        if abs(self.rect.x - self.initialPosition) > self.patrollingRange:
-            self.direction *= -1
-            self.image = pygame.transform.flip(self.image, True, False)
+        if not self.talking:
+            self.rect = self.rect.move(self.speed * self.direction, 0)
+            if abs(self.rect.x - self.initialPosition) > self.patrollingRange:
+                self.direction *= -1
+                self.image = pygame.transform.flip(self.image, True, False)
+            if self.talkCD > 0:
+                self.talkCD -= 1
     
     def reset_talk_CD(self):
-        pass
+        self.talkCD = NPCSettings.npcTalkCD
 
     def can_talk(self):
-        pass
+        return self.talkCD == 0
 

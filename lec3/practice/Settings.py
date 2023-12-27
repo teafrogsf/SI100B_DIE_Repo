@@ -19,7 +19,7 @@ class NPCSettings:
     npcWidth = 60
     npcHeight = 60
     npcPatrollingRange = 70
-    talkCD = 30           # 1s
+    npcTalkCD = 30           # 1s
 
 class SceneSettings:
     tileXnum = 36

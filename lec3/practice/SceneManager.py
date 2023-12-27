@@ -25,7 +25,14 @@ class SceneManager:
         return WindowSettings.height
     
     def check_event_talking(self, player, keys):
-        pass
+        for npc in self.npcs:
+            if npc.talking and keys[pygame.K_RETURN]:
+                npc.talking = False
+                player.talking = False
+                npc.reset_talk_CD()
+            elif npc.can_talk() and pygame.sprite.collide_rect(npc, player):
+                npc.talking = True
+                player.talking = True
 
     def update(self):
         for npc in self.npcs:
