@@ -43,10 +43,19 @@ class SceneManager:
             elif pygame.sprite.collide_rect(player, npc) and npc.can_talk():
                 npc.talking = True
                 player.talking = True
-                # TODO
+                dialogBoxTemp = DialogBox.DialogBox(self.window, GamePath.npc,
+                    ["Happy","2023!"])
+                dialogBoxTemp.render()
 
     def check_event_battle(self, player, keys):
-        pass
+        if self.battleBox is None:
+            for monster in self.monsters.sprites():
+                if pygame.sprite.collide_rect(player, monster):
+                    self.battleBox = BattleBox.BattleBox(self.window, 
+                                        player, monster)
+                    self.battleBox.render()
+        else:
+            self.battleBox.render()
 
 
     def update(self):
@@ -61,6 +70,6 @@ class SceneManager:
                                  (SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
         self.obstacles.draw(self.window)
         self.npcs.draw(self.window)
-        # TODO
+        self.monsters.draw(self.window)
 
     

@@ -18,9 +18,8 @@ class Player(pygame.sprite.Sprite):
         self.talking = False
 
         self.HP = PlayerSettings.playerHP
-        self.Attack = PlayerSettings.playerAttack
-        self.Defence = PlayerSettings.playerDefence
-        self.Money = PlayerSettings.playerMoney
+        self.attack = PlayerSettings.playerAttack
+        self.defence = PlayerSettings.playerDefence
 
     def move(self, dx, dy):
         self.rect = self.rect.move(dx,dy)

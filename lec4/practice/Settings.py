@@ -27,6 +27,9 @@ class NPCSettings:
 class MonsterSettings:
     monsterWidth = 60
     monsterHeight = 60
+    monsterHP = 10
+    monsterAttack = 3
+    monsterDefense = 1
 
 
 class SceneSettings:
@@ -68,14 +71,17 @@ class BattleSettings:
     playerWidth = WindowSettings.width // 6
     playerHeight = WindowSettings.height // 3
     playerCoordX = WindowSettings.width // 8
-    playerCoordY = WindowSettings.height // 2 
+    playerCoordY = WindowSettings.height // 2
 
     monsterWidth = WindowSettings.width // 6
     monsterHeight = WindowSettings.height // 3
     monsterCoordX = WindowSettings.width * 5 // 8
     monsterCoordY = WindowSettings.height // 2 
 
-    stepSize = 20
+    
+    animationCount = 15
+
+    stepSpeed = 20
 
 class GamePath:
     # player/npc related path
