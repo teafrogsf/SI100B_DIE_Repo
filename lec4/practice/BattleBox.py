@@ -96,7 +96,7 @@ class BattleBox:
 
             self.currentAnimationCount += 1
 
-            if self.currentAnimationCount == 30:
+            if self.currentAnimationCount == BattleSettings.animationCount * 2:
                 self.isPlayingAnimation = False
                 self.currentAnimationCount = 0
 
