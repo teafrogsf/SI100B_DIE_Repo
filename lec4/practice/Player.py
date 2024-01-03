@@ -20,6 +20,8 @@ class Player(pygame.sprite.Sprite):
         self.HP = PlayerSettings.playerHP
         self.attack = PlayerSettings.playerAttack
         self.defence = PlayerSettings.playerDefence
+        
+        self.Money = PlayerSettings.playerMoney
 
     def move(self, dx, dy):
         self.rect = self.rect.move(dx,dy)
