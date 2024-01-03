@@ -55,9 +55,13 @@ class BattleBox:
 
     def get_result(self):
         if self.attacker == 0:
+            self.monsterHP = max(0, self.monsterHP - 
+                                 (self.player.attack - self.monster.defense))
             self.attacker = 1
             self.dir = -1
         else:
+            self.playerHP = max(0, self.playerHP - 
+                                 (self.monster.attack - self.player.defense))
             self.attacker = 0
             self.dir = 1
 
@@ -102,8 +106,16 @@ class BattleBox:
 
         # 战斗判定以及结算
                 
-        else:
+        elif not self.isFinished:
             self.get_result()
 
-        # 战斗结束
+        if self.playerHP == 0 or self.monsterHP == 0:
+            if self.monsterHP == 0:
+                text = "You winwinwin!"
+                self.window.blit(self.font.render(text, True, self.fontColor),
+                        (BattleSettings.textStartX, 
+                         BattleSettings.textStartY + BattleSettings.textVerticalDist))
+                self.monster.kill()
+            self.isFinished = True
+            self.isPlayingAnimation = False
         

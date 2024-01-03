@@ -56,6 +56,9 @@ class SceneManager:
                     self.battleBox.render()
         else:
             self.battleBox.render()
+            if self.battleBox.isFinished and keys[pygame.K_RETURN]:
+                self.battleBox = None
+
 
 
     def update(self):

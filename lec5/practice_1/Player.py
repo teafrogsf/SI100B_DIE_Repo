@@ -19,7 +19,7 @@ class Player(pygame.sprite.Sprite):
 
         self.HP = PlayerSettings.playerHP
         self.attack = PlayerSettings.playerAttack
-        self.defence = PlayerSettings.playerDefence
+        self.defense = PlayerSettings.playerDefence
 
     def update(self, keys, scene):
         if self.talking:
