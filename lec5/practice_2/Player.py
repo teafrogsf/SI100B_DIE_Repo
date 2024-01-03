@@ -49,7 +49,9 @@ class Player(pygame.sprite.Sprite):
                 self.rect = self.rect.move(-dx, -dy)
 
             # 传送事件
-            
+            if pygame.sprite.spritecollide(self, scene.portals, 
+                                    False, pygame.sprite.collide_mask):
+                pygame.event.post(pygame.event.Event(GameEvent.EVENT_SWITCH))
 
             # 更新角色动画
             if any(keys):

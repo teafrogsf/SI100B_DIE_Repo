@@ -36,7 +36,7 @@ def gen_wild_map():
     
     return mapObj
 
-def build_obstacles():
+def gen_obstacles():
     image = pygame.image.load(GamePath.tree) 
 
     obstacles = pygame.sprite.Group()

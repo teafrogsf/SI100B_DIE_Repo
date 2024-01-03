@@ -9,13 +9,23 @@ from Portal import *
 
 class Scene():
     def __init__(self, window):
-        pass
+        self.type = None
+
+        self.map = None
+        self.obstacles = pygame.sprite.Group()
+        self.npcs = pygame.sprite.Group()
+        self.portals = pygame.sprite.Group()
+
+        self.window = window
+        self.width = WindowSettings.width
+        self.height = WindowSettings.height
 
     def render(self):
         for i in range(SceneSettings.tileXnum):
             for j in range(SceneSettings.tileYnum):
                 self.window.blit(self.map[i][j], 
-                                 (SceneSettings.tileWidth * i, SceneSettings.tileHeight * j))
+                                 (SceneSettings.tileWidth * i, 
+                                SceneSettings.tileHeight * j))
                 
         self.obstacles.draw(self.window)
         self.npcs.draw(self.window)
@@ -24,14 +34,19 @@ class Scene():
 class CityScene(Scene):
     def __init__(self, window):
         super().__init__(window)
+        self.type = SceneType.CITY
+        self.map = Map.gen_city_map()
+        self.obstacles = Map.gen_obstacles()
 
-    def gen_CITY(self):
-        pass
+        self.npcs.add(NPC(self.width // 3, self.height // 3))
+        self.portals.add(Portal(self.width // 3 * 2, self.height // 3 * 2))
 
 
 class WildScene(Scene):
     def __init__(self, window):
         super().__init__(window)
+        self.type = SceneType.WILD
+        self.map = Map.gen_wild_map()
+        self.obstacles = Map.gen_obstacles()
 
-    def gen_WILD(self):
-       pass
+        self.portals.add(Portal(self.width // 3, self.height // 3))

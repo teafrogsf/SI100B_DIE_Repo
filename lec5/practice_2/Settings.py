@@ -99,8 +99,8 @@ class ShopSettings:
     textStartY = boxStartY + 25    # Coordinate Y of the first line of dialog
 
 class PortalSettings:
-    width = 320
-    height = 320
+    portalWidth = 320
+    portalHeight = 320
 
 class GamePath:
     # player/npc related path

@@ -9,21 +9,18 @@ import Scene
 
 class SceneManager:
     def __init__(self, window):
-        self.state = GameState.GAME_PLAY_CITY
         self.scene = Scene.CityScene(window)
         self.window = window
 
-    def get_width(self):
-        return WindowSettings.width 
-
-    def get_height(self):
-        return WindowSettings.height
     
     def check_event_shopping(self, player, keys):
         pass
 
     def flush_scene(self):
-        pass
+        if self.scene.type == SceneType.CITY:
+            self.scene = Scene.WildScene(self.window)
+        elif self.scene.type == SceneType.WILD:
+            self.scene = Scene.CityScene(self.window)
 
     def update(self):
         # update npc
@@ -31,6 +28,6 @@ class SceneManager:
             each.update()
 
     def render(self):
-        pass
+        self.scene.render()
 
     
