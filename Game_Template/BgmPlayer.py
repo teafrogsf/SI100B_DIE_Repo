@@ -7,7 +7,6 @@ class BgmPlayer():
         pass
         ##### Your Code Here ↑ #####
 
-
     def play(self, name, loop=-1):
         ##### Your Code Here ↓ #####
         pass
@@ -22,6 +21,3 @@ class BgmPlayer():
         ##### Your Code Here ↓ #####
         pass
         ##### Your Code Here ↑ #####
-
-
-    

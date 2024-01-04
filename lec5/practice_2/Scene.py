@@ -20,6 +20,8 @@ class Scene():
         self.width = WindowSettings.width
         self.height = WindowSettings.height
 
+        self.shoppingBox = None
+
     def render(self):
         for i in range(SceneSettings.tileXnum):
             for j in range(SceneSettings.tileYnum):
