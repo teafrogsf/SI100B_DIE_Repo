@@ -9,7 +9,8 @@ import Scene
 
 class SceneManager:
     def __init__(self, window):
-        self.scene = Scene.CityScene(window)
+        self.scene = Scene.MainMenuScene(window)
+        self.state = GameState.MAIN_MENU
         self.window = window
 
     
@@ -25,7 +26,7 @@ class SceneManager:
                 elif keys[pygame.K_RETURN]:
                     if self.scene.shoppingBox.selectedID == 4:
                         npc.talking = False
-                        npc.reset_talk_CD()
+                        npc.reset_talk_CD() 
                         player.talking = False
                         self.scene.shoppingBox = None
                     else:
@@ -42,11 +43,13 @@ class SceneManager:
                 self.scene.shoppingBox.render()
             
 
-    def flush_scene(self):
-        if self.scene.type == SceneType.CITY:
-            self.scene = Scene.WildScene(self.window)
-        elif self.scene.type == SceneType.WILD:
+    def flush_scene(self, dest):
+        if dest == GameState.GAME_PLAY_CITY:
             self.scene = Scene.CityScene(self.window)
+        elif dest == GameState.GAME_PLAY_WILD:
+            self.scene = Scene.WildScene(self.window)
+
+        self.state = dest
 
     def update(self):
         # update npc

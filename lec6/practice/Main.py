@@ -27,21 +27,31 @@ def run_game():
                 pygame.quit()
                 sys.exit()
             # 传送
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN\
+                and sceneManager.state == GameState.MAIN_MENU:
+                    sceneManager.flush_scene(GameState.GAME_PLAY_CITY)
             if event.type == GameEvent.EVENT_SWITCH:
-                sceneManager.flush_scene()
+                if sceneManager.state == GameState.GAME_PLAY_CITY:
+                    sceneManager.flush_scene(GameState.GAME_PLAY_WILD)
+                elif sceneManager.state == GameState.GAME_PLAY_WILD:
+                    sceneManager.flush_scene(GameState.GAME_PLAY_CITY)
 
         # 获取按键状态
         keys = pygame.key.get_pressed()
 
-        # 更新 NPC / Player
-        player.update(keys, sceneManager.scene)    # 主要是角色移动
-        sceneManager.update()                # 主要是场景中对象的动画更新，暂时不涉及player的部分
+        if sceneManager.state == GameState.MAIN_MENU:
+            sceneManager.render()
+        else:
+            # 更新 NPC / Player
+            player.update(keys, sceneManager.scene)    # 主要是角色移动
+            sceneManager.update()                # 主要是场景中对象的动画更新，暂时不涉及player的部分
 
-        # talking 的render 必须要在scene render以后，不然会被背景盖掉
-        sceneManager.render()                
-        player.draw(window)
+            # talking 的render 必须要在scene render以后，不然会被背景盖掉
+            sceneManager.render()                
+            player.draw(window)
 
-        sceneManager.check_event_shopping(player, keys)
+            sceneManager.check_event_shopping(player, keys)
         pygame.display.flip()
 
 if __name__ == "__main__":

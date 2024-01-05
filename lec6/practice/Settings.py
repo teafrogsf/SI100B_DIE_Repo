@@ -102,6 +102,10 @@ class PortalSettings:
     portalWidth = 320
     portalHeight = 320
 
+class MenuSettings:
+    textSize = 36
+    blinkInterval = 15
+
 class GamePath:
     # player/npc related path
     player = [
@@ -133,6 +137,8 @@ class GamePath:
     tree = r".\assets\tiles\tree.png"
 
     portal = r".\assets\others\portal.png"
+
+    menu = r".\assets\others\menu.png"
 
 class GameState(Enum):
     MAIN_MENU = 1

@@ -52,3 +52,30 @@ class WildScene(Scene):
         self.obstacles = Map.gen_obstacles()
 
         self.portals.add(Portal(self.width // 3, self.height // 3))
+
+class MainMenuScene(Scene):
+    def __init__(self, window):
+        super().__init__(window)
+        self.bg = pygame.image.load(GamePath.menu)
+        self.bg = pygame.transform.scale(self.bg, 
+                (WindowSettings.width, WindowSettings.height))
+        
+        self.font = pygame.font.Font(None, MenuSettings.textSize)
+        self.text = self.font.render("Press ENTER to start",
+                                True, (255, 255, 255))
+        self.textRect = self.text.get_rect(center=(WindowSettings.width // 2, 
+                                WindowSettings.height - 50))
+        
+        self.blinkTimer = 0
+        
+    def render(self):
+        self.window.blit(self.bg, (0, 0))
+        
+        self.blinkTimer += 1
+        if self.blinkTimer >= MenuSettings.blinkInterval:
+            self.window.blit(self.text, self.textRect)
+            if self.blinkTimer >= MenuSettings.blinkInterval * 2:
+                self.blinkTimer = 0
+
+
+
