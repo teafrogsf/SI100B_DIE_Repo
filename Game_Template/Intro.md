@@ -5,12 +5,12 @@
 模板更新记录：
 
 1. 2024/1/4:
-    1. 将部分 `Maps.py` 中的函数移入 `Scene` 类方法
-    2. 更新了 `Tiles.py`
-    3. 优化了 `GameManager` 中常规 `update_regular()` 的逻辑
-    4. 更加详细的解释了对 `GameManager` 中 `render()` 逻辑的说明
-    5. 将代码部分用 `` 标出，优化了其他 markdown 语法
-    6. 更新了欢迎致辞
+   1. 将部分 `Maps.py` 中的函数移入 `Scene` 类方法
+   2. 更新了 `Tiles.py`
+   3. 优化了 `GameManager` 中常规 `update_regular()` 的逻辑
+   4. 更加详细的解释了对 `GameManager` 中 `render()` 逻辑的说明
+   5. 将代码部分用 `` 标出，优化了其他 markdown 语法
+   6. 更新了欢迎致辞
 
 ---
 
@@ -135,7 +135,7 @@ update()后，我们的游戏就应当把新的状态显示在屏幕上。原有
 那么，应当如何开始书写他呢？我们可以从 `__init__` 开始使您的游戏窗口能够正确的出现。
 
 注：一些 `GameManager.py` 依赖的内容被整合在了 `Settings.py` 中。这部分的内容会以大驼峰命名法出现，如 `WindowSettings`。在这些类的内部您可以找到一些设置，如 `WindowSettings.name`。  
-调用 `Settings.py` 是非常重要的。否则，可能会出现代码中数值不一致的情况，例如在屏幕设置的时候设置为 1280\*720 的屏幕，渲染时却渲染到了 1920\*1080 的屏幕上
+调用 `Settings.py` 是非常重要的。否则，可能会出现代码中数值不一致的情况，例如在屏幕设置的时候设置为 1280\*720 的屏幕，渲染时却渲染到了 1920\*1080 的屏幕上。
 
 #### 5.2.1 `__init__(self)` 函数
 
@@ -300,7 +300,7 @@ elif self.state == GameState.GAME_PLAY_BOSS:
 
 #### 5.4.4 `Monster`
 
-除了善良友好的NPC们，自然还有敌人需要我们去击败。`Monster` 类主要负责实现关于怪物的相关信息。同样的，它也继承自 `Sprite` 类
+除了善良友好的NPC们，自然还有敌人需要我们去击败。`Monster` 类主要负责实现关于怪物的相关信息。同样的，它也继承自 `Sprite` 类。
 
 ##### 5.4.4.1 `__init__(self)`
 
@@ -352,7 +352,7 @@ elif self.state == GameState.GAME_PLAY_BOSS:
 
 `gen_wild_map()`, `gen_city_map()` 和 `gen_boss_map()` 分别实现了不同场景下的背景地图生成。在这些方法中，他们各自载入了不同场景下的地图的贴图，然后进行随机的地图生成。在这里，我们会用到 `SceneSettings` 中的 `tileXnum`， `tileYnum` 参数，这两个参数设定了场景中地图贴图的数量，这样方便了贴图位置的生成与计算。
 
-#### 5.5.3.2 gen_city_obstacle()等
+#### 5.5.3.2 `gen_city_obstacle()`等
 
 `gen_wild_obstacle()`, `gen_city_obstacle()`和`gen_boss_obstacle()` 分别实现了不同场景下使用 `block` 类的障碍物生成。由于障碍物 `block` 继承自 `Sprite` 类，因此我们将所有的 `block` 放在一个`Sprite` 构成的 `Group` 中。在主城和boss场景中，您可以简单地围绕地图生成一圈障碍物，或者您可以根据您自己的想法进行绘制。在野外，您可以随机生成一些障碍物。在我们的示例中，我们手动控制了障碍物生成的范围，使得角色出生点周围不会存在障碍物。您也可以尝试别的方法进行障碍物的生成，或者通过提前制作地图的形式进行导入。
 
@@ -396,7 +396,7 @@ elif self.state == GameState.GAME_PLAY_BOSS:
 
 ### 5.8 `Portal.py`
 
-在 `Protal` 中实现了一个传送门的类，用于放置在场景中进行场景的切换。在初始化时，需要载入它的贴图，坐标，以及它通往的由 `SceneType` 枚举类进行定义的场景。在 `draw()` 方法中进行自身的渲染，渲染时需要考虑 `camera` 的偏移。
+在 `Portal` 中实现了一个传送门的类，用于放置在场景中进行场景的切换。在初始化时，需要载入它的贴图，坐标，以及它通往的由 `SceneType` 枚举类进行定义的场景。在 `draw()` 方法中进行自身的渲染，渲染时需要考虑 `camera` 的偏移。
 
 ### 5.9 `BgmPlayer.py`
 
@@ -406,7 +406,7 @@ elif self.state == GameState.GAME_PLAY_BOSS:
 
 在初始化中，`pygame.mixer.init()` 被调用，进行游戏音乐的初始化。载入不同场景下可能用到的bgm路径备用。
 
-#### 5.9.2 play()
+#### 5.9.2 `play()`
 
 实现音乐的播放。调用 `pygame.mixer.music.load(路径)` 将bgm载入游戏的播放器，调用 `pygame.mixer.music.play(loop)` 进行播放。其中loop参数控制了播放的次数，默认值为-1表示一直循环播放。
 
