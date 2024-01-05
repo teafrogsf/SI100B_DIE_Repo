@@ -23,7 +23,15 @@ class Player(pygame.sprite.Sprite):
         self.money = PlayerSettings.playerMoney
 
     def attr_update(self, addCoins = 0, addHP = 0, addAttack = 0, addDefence = 0):
-        pass
+        if self.money + addCoins < 0:
+            return
+        if self.HP + addHP < 0:
+            return
+        self.money += addCoins
+        self.HP += addHP
+        self.attack += addAttack
+        self.defence += addDefence
+
 
     def update(self, keys, scene):
         if self.talking:

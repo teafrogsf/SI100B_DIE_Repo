@@ -12,7 +12,7 @@ class ShoppingBox:
         self.window = window
         self.fontSize = fontSize
         self.fontColor = fontColor
-        self.font = pygame.font.Font(None, self.fontSize)\
+        self.font = pygame.font.Font(None, self.fontSize)
         
         self.bg = pygame.Surface((ShopSettings.boxWidth, 
                                   ShopSettings.boxHeight),pygame.SRCALPHA)
@@ -29,7 +29,14 @@ class ShoppingBox:
 
 
     def buy(self):
-        pass
+        if self.selectedID == 0:
+            self.player.attr_update(addCoins = -15, addAttack = 1)
+        elif self.selectedID == 1:
+            self.player.attr_update(addCoins = -15, addDefence = 1)
+        elif self.selectedID == 2:
+            self.player.attr_update(addCoins = -15, addHP = 1)
+        elif self.selectedID == 3:
+            self.player.attr_update(addHP = -5)
         
 
     def render(self):
@@ -39,12 +46,23 @@ class ShoppingBox:
             (DialogSettings.npcCoordX, DialogSettings.npcCoordY))
         
         offset = 0
+        for id, item in enumerate(list(self.items.keys())):
+            if id == self.selectedID:
+                text = '-->' + item + ' ' + self.items[item]
+            else:
+                text = '      ' + item + ' ' + self.items[item]
+            self.window.blit(self.font.render(text, True, self.fontColor),
+                (ShopSettings.textStartX, ShopSettings.textStartY + offset))
+            offset += DialogSettings.textVerticalDist
+
+        
         texts = ["Coins: " + str(self.player.money),
                  "HP: " + str(self.player.HP),
                  "Attack: " + str(self.player.attack),
                  "Defence: " + str(self.player.defence)]
-        
+    
+        offset = 0
         for text in texts:
             self.window.blit(self.font.render(text, True, self.fontColor),
-                (ShopSettings.textStartX, ShopSettings.textStartY + offset))
+                (ShopSettings.textStartX + ShopSettings.boxWidth * 3 / 4, ShopSettings.textStartY + offset))
             offset += DialogSettings.textVerticalDist

@@ -16,12 +16,29 @@ class SceneManager:
     def check_event_shopping(self, player, keys):
         for npc in self.scene.npcs.sprites():
             if npc.talking:
+                if keys[pygame.K_w]:
+                    self.scene.shoppingBox.selectedID = max(0, 
+                        self.scene.shoppingBox.selectedID - 1)
+                elif keys[pygame.K_s]:
+                    self.scene.shoppingBox.selectedID = min(4, 
+                        self.scene.shoppingBox.selectedID + 1)
+                elif keys[pygame.K_RETURN]:
+                    if self.scene.shoppingBox.selectedID == 4:
+                        npc.talking = False
+                        npc.reset_talk_CD()
+                        player.talking = False
+                        self.scene.shoppingBox = None
+                    else:
+                        self.scene.shoppingBox.buy() 
+            if self.scene.shoppingBox:    
                 self.scene.shoppingBox.render()
-            if pygame.sprite.collide_rect(npc, player) and npc.can_talk():
+            elif pygame.sprite.collide_rect(npc, player) and npc.can_talk():
                 npc.talking = True
                 player.talking = True
                 self.scene.shoppingBox = ShoppingBox.ShoppingBox(self.window, 
-                    GamePath.npc, player, {"A": "+15"})
+                    GamePath.npc, player, 
+            {"Attack +1": "Coin -15", "Defence +1": "Coin -15",
+             "HP +1": "Coin -15", "???": "HP -5", "Exit": ""})
                 self.scene.shoppingBox.render()
             
 
